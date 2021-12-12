@@ -1,5 +1,6 @@
 package com.test.transfer.servlet;
 
+import com.test.transfer.factory.BeanFactory;
 import com.test.transfer.pojo.Result;
 import com.test.transfer.service.TransferService;
 import com.test.transfer.service.impl.TransferServiceImpl;
@@ -10,11 +11,12 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "TransferServlet", value = "/TransferServlet")
+@WebServlet(name = "transferServlet", value = "/transferServlet")
 public class TransferServlet extends HttpServlet {
 
     // 1. 实例化service层对象
-    private TransferService transferService = new TransferServiceImpl();
+    // private TransferService transferService = new TransferServiceImpl();
+    private TransferService transferService = (TransferService) BeanFactory.getBean("transferService");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

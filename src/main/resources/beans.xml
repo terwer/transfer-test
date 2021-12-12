@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 配置bean子标签，每一个bean子标签都代表一个类的配置 -->
+<beans>
+    <!-- id标识对象，class代表类的全路径-->
+    <bean id="accountDao" class="com.test.transfer.dao.impl.JdbcAccountDaoImpl"></bean>
+    <bean id="transferService" class="com.test.transfer.service.impl.TransferServiceImpl"></bean>
+</beans>

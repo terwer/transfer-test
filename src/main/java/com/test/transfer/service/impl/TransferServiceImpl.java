@@ -1,6 +1,8 @@
 package com.test.transfer.service.impl;
 
 import com.test.transfer.dao.AccountDao;
+import com.test.transfer.dao.impl.JdbcAccountDaoImpl;
+import com.test.transfer.factory.BeanFactory;
 import com.test.transfer.pojo.Account;
 import com.test.transfer.service.TransferService;
 
@@ -9,12 +11,12 @@ import com.test.transfer.service.TransferService;
  */
 public class TransferServiceImpl implements TransferService {
 
-    //private AccountDao accountDao = new JdbcAccountDaoImpl();
+    // private AccountDao accountDao = new JdbcAccountDaoImpl();
 
-    // private AccountDao accountDao = (AccountDao) BeanFactory.getBean("accountDao");
+    private AccountDao accountDao = (AccountDao) BeanFactory.getBean("accountDao");
 
     // 最佳状态
-    private AccountDao accountDao;
+    // private AccountDao accountDao;
 
     // 构造函数传值/set方法传值
 
@@ -38,7 +40,7 @@ public class TransferServiceImpl implements TransferService {
             to.setMoney(to.getMoney()+money);
 
             accountDao.updateAccountByCardNo(to);
-            int c = 1/0;
+            // int c = 1/0;
             accountDao.updateAccountByCardNo(from);
 
         /*    // 提交事务
