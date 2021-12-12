@@ -2,7 +2,6 @@ package com.test.transfer.service.impl;
 
 import com.test.transfer.dao.AccountDao;
 import com.test.transfer.dao.impl.JdbcAccountDaoImpl;
-import com.test.transfer.factory.BeanFactory;
 import com.test.transfer.pojo.Account;
 import com.test.transfer.service.TransferService;
 
@@ -11,20 +10,7 @@ import com.test.transfer.service.TransferService;
  */
 public class TransferServiceImpl implements TransferService {
 
-    // private AccountDao accountDao = new JdbcAccountDaoImpl();
-
-    private AccountDao accountDao = (AccountDao) BeanFactory.getBean("accountDao");
-
-    // 最佳状态
-    // private AccountDao accountDao;
-
-    // 构造函数传值/set方法传值
-
-    public void setAccountDao(AccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
-
-
+    private AccountDao accountDao = new JdbcAccountDaoImpl();
 
     @Override
     public void transfer(String fromCardNo, String toCardNo, int money) throws Exception {
