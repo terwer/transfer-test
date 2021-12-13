@@ -3,5 +3,7 @@
 <beans>
     <!-- id标识对象，class代表类的全路径-->
     <bean id="accountDao" class="com.test.transfer.dao.impl.JdbcAccountDaoImpl"></bean>
-    <bean id="transferService" class="com.test.transfer.service.impl.TransferServiceImpl"></bean>
+    <bean id="transferService" class="com.test.transfer.service.impl.TransferServiceImpl">
+        <property name="AccountDao" ref="accountDao"></property>
+    </bean>
 </beans>

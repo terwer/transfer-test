@@ -3,12 +3,13 @@ package com.test.transfer.servlet;
 import com.test.transfer.factory.BeanFactory;
 import com.test.transfer.pojo.Result;
 import com.test.transfer.service.TransferService;
-import com.test.transfer.service.impl.TransferServiceImpl;
 import com.test.transfer.utils.JsonUtils;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "transferServlet", value = "/transferServlet")
