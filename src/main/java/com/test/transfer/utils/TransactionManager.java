@@ -15,7 +15,7 @@ public class TransactionManager {
         this.connectionUtils = connectionUtils;
     }
 
-    /*private TransactionManager(){
+    private TransactionManager(){
 
     }
 
@@ -23,8 +23,7 @@ public class TransactionManager {
 
     public static TransactionManager getInstance() {
         return  transactionManager;
-    }*/
-
+    }
 
 
     // 开启手动事务控制
