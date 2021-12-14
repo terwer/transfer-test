@@ -15,27 +15,26 @@ public class TransactionManager {
         this.connectionUtils = connectionUtils;
     }
 
-    /*private TransactionManager(){
-
-    }
-
-    private static TransactionManager transactionManager = new TransactionManager();
-
-    public static TransactionManager getInstance() {
-        return  transactionManager;
-    }*/
-
+    //    private TransactionManager(){
+//
+//    }
+//
+//    private static TransactionManager transactionManager = new TransactionManager();
+//
+//    public static TransactionManager getInstance() {
+//        return  transactionManager;
+//    }
 
 
     // 开启手动事务控制
     public void beginTransaction() throws SQLException {
-        connectionUtils.getCurrentThreadConn().setAutoCommit(false);
+       connectionUtils.getCurrentThreadConn().setAutoCommit(false);
     }
 
 
     // 提交事务
     public void commit() throws SQLException {
-        connectionUtils.getCurrentThreadConn().commit();
+       connectionUtils.getCurrentThreadConn().commit();
     }
 
 
