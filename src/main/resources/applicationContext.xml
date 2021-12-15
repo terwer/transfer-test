@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--跟标签beans，里面配置一个又一个的bean子标签，每一个bean子标签都代表一个类的配置-->
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+">
 
+    <!-- 开启注解扫描 -->
+    <context:component-scan base-package="com.test.transfer"/>
 
+    <!-- 引入外部资源文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
 
-    <!-- id标识对象，class代表类的全路径-->
-    <bean id="accountDao" class="com.test.transfer.dao.impl.JdbcAccountDaoImpl">
-        <property name="ConnectionUtils" ref="connectionUtils"/>
-    </bean>
-    <bean id="transferService" class="com.test.transfer.service.impl.TransferServiceImpl">
-        <property name="AccountDao" ref="accountDao"></property>
-    </bean>
-
-    <!-- 链接管理对象 -->
-    <bean id="connectionUtils" class="com.test.transfer.utils.ConnectionUtils"></bean>
-
-    <!-- 事务管理器 -->
-    <bean id="transactionManager" class="com.test.transfer.utils.TransactionManager">
-        <property name="ConnectionUtils" ref="connectionUtils"/>
-    </bean>
-
-    <!-- 代理工厂 -->
-    <bean id="proxyFactory" class="com.test.transfer.factory.ProxyFactory">
-        <property name="TransactionManager" ref="transactionManager"/>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
     </bean>
 </beans>

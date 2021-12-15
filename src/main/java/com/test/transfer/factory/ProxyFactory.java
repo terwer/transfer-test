@@ -4,6 +4,8 @@ import com.test.transfer.utils.TransactionManager;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -14,12 +16,10 @@ import java.lang.reflect.Proxy;
  * @date: 2021/12/14 22:58
  * @description: 代理对象工厂，主要用于生产对象
  */
+@Component("proxyFactory")
 public class ProxyFactory {
+    @Autowired
     private TransactionManager transactionManager;
-
-    public void setTransactionManager(TransactionManager transactionManager) {
-        this.transactionManager = transactionManager;
-    }
 
     /**
      * Jdk动态代理

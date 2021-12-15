@@ -3,17 +3,17 @@ package com.test.transfer.dao.impl;
 import com.test.transfer.dao.AccountDao;
 import com.test.transfer.pojo.Account;
 import com.test.transfer.utils.ConnectionUtils;
-import com.test.transfer.utils.DruidUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- * @author 应癫
- */
+@Component("accountDao")
 public class JdbcAccountDaoImpl implements AccountDao {
 
+    @Autowired
     private ConnectionUtils connectionUtils;
 
     public void setConnectionUtils(ConnectionUtils connectionUtils) {
@@ -23,7 +23,6 @@ public class JdbcAccountDaoImpl implements AccountDao {
     @Override
     public Account queryAccountByCardNo(String cardNo) throws Exception {
         //从连接池获取连接
-        // Connection con = DruidUtils.getInstance().getConnection();
         Connection con = connectionUtils.getCurrentThreadConn();
         String sql = "select * from account where cardNo=?";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -39,7 +38,6 @@ public class JdbcAccountDaoImpl implements AccountDao {
 
         resultSet.close();
         preparedStatement.close();
-        //con.close();
 
         return account;
     }
@@ -49,7 +47,6 @@ public class JdbcAccountDaoImpl implements AccountDao {
 
         // 从连接池获取连接
         // 改造为：从当前线程当中获取绑定的connection连接
-        // Connection con = DruidUtils.getInstance().getConnection();
          Connection con = connectionUtils.getCurrentThreadConn();
         String sql = "update account set money=? where cardNo=?";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -58,7 +55,6 @@ public class JdbcAccountDaoImpl implements AccountDao {
         int i = preparedStatement.executeUpdate();
 
         preparedStatement.close();
-        //con.close();
         return i;
     }
 }
