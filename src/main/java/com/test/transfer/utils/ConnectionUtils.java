@@ -2,8 +2,10 @@ package com.test.transfer.utils;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -11,7 +13,8 @@ import java.sql.SQLException;
 public class ConnectionUtils {
 
     @Autowired
-    private DruidDataSource dataSource;
+    // @Qualifier("dataSource")
+    private DataSource dataSource;
 
     private ThreadLocal<Connection> threadLocal = new ThreadLocal<>(); // 存储当前线程的连接
 
