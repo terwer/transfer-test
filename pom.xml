@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.test</groupId>
-    <artifactId>transfer-test-iocxml</artifactId>
+    <artifactId>transfer-test-iocanno</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>transfer-test-iocxml</name>
+    <name>transfer-test-iocanno</name>
     <packaging>war</packaging>
 
     <properties>
