@@ -20,6 +20,14 @@ public class JdbcAccountDaoImpl implements AccountDao {
         this.connectionUtils = connectionUtils;
     }
 
+    public void init(){
+        System.out.println("初始化执行");
+    }
+
+    public void destroy(){
+        System.out.println("销毁时候执行");
+    }
+
     @Override
     public Account queryAccountByCardNo(String cardNo) throws Exception {
         //从连接池获取连接
