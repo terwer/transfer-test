@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.test</groupId>
-    <artifactId>transfer-test</artifactId>
+    <artifactId>transfer-test-iocxml</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>transfer-test</name>
+    <name>transfer-test-iocxml</name>
     <packaging>war</packaging>
 
     <properties>
@@ -69,6 +69,20 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>2.1_2</version>
+        </dependency>
+
+        <!-- 引入Spring IOC容器功能 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.1.12.RELEASE</version>
+        </dependency>
+
+        <!-- 引入Spring Web功能 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.1.12.RELEASE</version>
         </dependency>
     </dependencies>
 

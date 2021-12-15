@@ -4,7 +4,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.dom4j.tree.SingleIterator;
 
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -28,7 +27,7 @@ public class BeanFactory {
     static {
         // 任务一：读取并解析xml，通过反射实例化对象并存储，用map结构存储
         // 加载xml
-        InputStream resourceAsStream = BeanFactory.class.getClassLoader().getResourceAsStream("beans.xml");
+        InputStream resourceAsStream = BeanFactory.class.getClassLoader().getResourceAsStream("applicationContext.xml");
         // 解析xml
         SAXReader saxReader = new SAXReader();
         try {

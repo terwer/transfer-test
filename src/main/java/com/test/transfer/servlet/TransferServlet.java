@@ -5,6 +5,8 @@ import com.test.transfer.factory.ProxyFactory;
 import com.test.transfer.pojo.Result;
 import com.test.transfer.service.TransferService;
 import com.test.transfer.utils.JsonUtils;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +23,16 @@ public class TransferServlet extends HttpServlet {
     // 利用IOC实例化对象
     // private TransferService transferService = (TransferService) BeanFactory.getBean("transferService");
     // 使用动态代理增强功能，添加事务控制
-    private ProxyFactory proxyFactory = (ProxyFactory) BeanFactory.getBean("proxyFactory");
-    private TransferService transferService = (TransferService) proxyFactory.getCglibProxy(BeanFactory.getBean("transferService"));
+    // private ProxyFactory proxyFactory = (ProxyFactory) BeanFactory.getBean("proxyFactory");
+    // private TransferService transferService = (TransferService) proxyFactory.getCglibProxy(BeanFactory.getBean("transferService"));
+    private TransferService transferService = null;
+
+    @Override
+    public void init() throws ServletException {
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        ProxyFactory proxyFactory = (ProxyFactory) webApplicationContext.getBean("proxyFactory");
+        transferService = (TransferService)proxyFactory.getJdkProxy(webApplicationContext.getBean("transferService"));
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
