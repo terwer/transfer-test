@@ -23,7 +23,7 @@ public class TransferServlet extends HttpServlet {
 
     // 使用动态代理增强功能，添加事务控制
     private ProxyFactory proxyFactory = (ProxyFactory) BeanFactory.getBean("proxyFactory");
-    private TransferService transferService = (TransferService) proxyFactory.getJdkProxy(BeanFactory.getBean("transferService"));
+    private TransferService transferService = (TransferService) proxyFactory.getProxy(BeanFactory.getBean("transferService"));
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
