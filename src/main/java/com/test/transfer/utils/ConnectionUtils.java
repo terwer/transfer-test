@@ -1,23 +1,17 @@
 package com.test.transfer.utils;
 
+import com.test.transfer.annotation.Component;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * @author 应癫
+ * @author: terwer
+ * @date: 2021/12/16 10:11
+ * @description: 连接工具类
  */
+@Component("connectionUtils")
 public class ConnectionUtils {
-
-//    private ConnectionUtils() {
-//
-//    }
-//
-//    private static ConnectionUtils connectionUtils = new ConnectionUtils();
-//
-//    public static ConnectionUtils getInstance() {
-//        return connectionUtils;
-//    }
-
 
     private ThreadLocal<Connection> threadLocal = new ThreadLocal<>(); // 存储当前线程的连接
 

@@ -13,16 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * @author: terwer
+ * @date: 2021/12/14 22:58
+ * @description: Servlet入口
+ */
 @WebServlet(name = "transferServlet", value = "/transferServlet")
 public class TransferServlet extends HttpServlet {
 
-    // 1. 实例化service层对象
-    // private TransferService transferService = new TransferServiceImpl();
-    // 利用IOC实例化对象
-    // private TransferService transferService = (TransferService) BeanFactory.getBean("transferService");
     // 使用动态代理增强功能，添加事务控制
     private ProxyFactory proxyFactory = (ProxyFactory) BeanFactory.getBean("proxyFactory");
-    private TransferService transferService = (TransferService) proxyFactory.getCglibProxy(BeanFactory.getBean("transferService"));
+    private TransferService transferService = (TransferService) proxyFactory.getJdkProxy(BeanFactory.getBean("transferService"));
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,9 +43,7 @@ public class TransferServlet extends HttpServlet {
         Result result = new Result();
 
         try {
-
-            // 2. 调用service层方法
-            transferService.transfer(fromCardNo,toCardNo,money);
+            transferService.transfer(fromCardNo, toCardNo, money);
             result.setStatus("200");
         } catch (Exception e) {
             e.printStackTrace();

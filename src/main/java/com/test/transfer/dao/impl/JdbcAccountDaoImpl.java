@@ -1,5 +1,8 @@
 package com.test.transfer.dao.impl;
 
+import com.test.transfer.annotation.AutoWired;
+import com.test.transfer.annotation.Component;
+import com.test.transfer.annotation.Transactional;
 import com.test.transfer.dao.AccountDao;
 import com.test.transfer.pojo.Account;
 import com.test.transfer.utils.ConnectionUtils;
@@ -10,15 +13,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * @author 应癫
+ * @author: terwer
+ * @date: 2021/12/16 10:11
+ * @description: 连接工具类
  */
+@Component("accountDao")
 public class JdbcAccountDaoImpl implements AccountDao {
 
+    @AutoWired
     private ConnectionUtils connectionUtils;
-
-    public void setConnectionUtils(ConnectionUtils connectionUtils) {
-        this.connectionUtils = connectionUtils;
-    }
 
     @Override
     public Account queryAccountByCardNo(String cardNo) throws Exception {
@@ -44,6 +47,7 @@ public class JdbcAccountDaoImpl implements AccountDao {
         return account;
     }
 
+    @Transactional
     @Override
     public int updateAccountByCardNo(Account account) throws Exception {
 

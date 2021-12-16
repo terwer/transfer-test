@@ -7,8 +7,9 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * JSON工具类（使用的是jackson实现的）
- * @author 应癫
+ * @author: terwer
+ * @date: 2021/12/16 10:10
+ * @description: JSON工具类（使用的是jackson实现的）
  */
 public class JsonUtils {
 
